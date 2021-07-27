@@ -9,7 +9,7 @@ Vagrant.configure('2') do |config|
       docker.build_args = ['--rm=true', "--tag=wikia_fpm_recipes/bionic"]
 
       # Avoid leaving unused containers behind.
-      docker.create_args = %w[--rm=true --privileged=true]
+      docker.create_args = ['--rm=true', '--privileged=true']
     end
   end
 end
