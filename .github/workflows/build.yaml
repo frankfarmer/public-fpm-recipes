@@ -19,7 +19,7 @@ jobs:
           ${{ runner.os }}-vagrant-
 
     - name: Run vagrant up
-      run: vagrant up --provider=docker
+      run: brew install vagrant && vagrant up --provider=docker
 
     - name: build
       run: make varnish-modules
