@@ -14,8 +14,7 @@ jobs:
         RUBY_VERSION: 2.5
       run: |
         sudo apt-get update && sudo apt-get install -y \
-        g++ \
-        gcc \
+        g++ gcc gpg \
         libc6-dev \
         make \
         pkg-config \
