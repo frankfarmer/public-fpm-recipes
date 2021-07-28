@@ -3,13 +3,13 @@ name: vagrant-up
 on: [push]
 
 jobs:
-  vagrant-up:
+  build-debs:
     runs-on: ubuntu-18.04
 
     steps:
     - uses: actions/checkout@v2
 
-    - name:
+    - name: install deps
       env:
         RUBY_VERSION: 2.5
       run: |
@@ -33,7 +33,7 @@ jobs:
         "ruby${RUBY_VERSION}" \
         "ruby${RUBY_VERSION}-dev"
 
-    - name: varnish-apt-deps
+    - name: varnish deps
       env:
         VARNISH_APT_KEY: A9897320C397E3A60C03E8BF821AD320F71BFF3D
       run:
@@ -56,7 +56,7 @@ jobs:
 
         sudo gem install fpm-cookery --no-ri --no-rdoc
 
-    - name: build
+    - name: build all debs
       run: |
         for d in recipes/* ; do
           cd $d
