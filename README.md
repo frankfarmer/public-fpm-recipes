@@ -1,33 +1,7 @@
 # fpm-recipes
 
-TODO: polish up this documentation
+This repo builds debs using [fpm-cookery](https://github.com/bernd/fpm-cookery), on top of Github Actions
 
-## Initializing the build system
+The build is located in [.github/workflows/bionic.yaml](./.github/workflows/bionic.yaml)
 
-1) install vagrant from https://www.vagrantup.com/downloads.html
-2) Run following commands:
-
-```
-vagrant up
-```
-
-## Docker base
-
-Docker is used to provide common build environment that works fast on linux machines and can be managed by Dockerfiles.
-
-### Reloading changes to Dockerfile:
-
-```
-vagrant reload
-```
-
-## Building packages - example usage
-```
-make consul-replicate TARGET=bionic64
-make
-make consul-replicate recipes/consul-wikia-tools TARGET=bionic64
-```
-
-###
-
-Some ideas and code for this repo were borrowed from https://github.com/Graylog2/fpm-recipes
+For debugging, it's possible to run the action locally using [nektos/act](https://github.com/nektos/act)
