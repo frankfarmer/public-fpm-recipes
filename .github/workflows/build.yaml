@@ -64,9 +64,10 @@ jobs:
           fpm-cook package
           cd ../..
         done
+        mv recipes/*/pkg/*.deb .
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       with:
         name: all-debs
-        path: recipes/**/pkg
+        path: *.deb
