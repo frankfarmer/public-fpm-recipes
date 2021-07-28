@@ -33,17 +33,18 @@ jobs:
         "ruby${RUBY_VERSION}" \
         "ruby${RUBY_VERSION}-dev"
 
-
     - name: varnish-apt-deps
       env:
         VARNISH_APT_KEY: A9897320C397E3A60C03E8BF821AD320F71BFF3D
       run:
-        which sudo
-        which gpg
-        export GNUPGHOME="$(mktemp -d)" && \
-          sudo gpg --batch --keyserver keyserver.ubuntu.com --recv-keys $VARNISH_APT_KEY && \
-          sudo bash -c "gpg --batch --export export $VARNISH_APT_KEY > /etc/apt/trusted.gpg.d/varnish.gpg" && \
-          gpgconf --kill all && \
+        export GNUPGHOME="$(mktemp -d)" &&
+        echo 1 &&
+          sudo gpg --batch --keyserver keyserver.ubuntu.com --recv-keys $VARNISH_APT_KEY &&
+          echo 2 &&
+          sudo bash -c "gpg --batch --export export $VARNISH_APT_KEY > /etc/apt/trusted.gpg.d/varnish.gpg" &&
+          echo 3 &&
+          gpgconf --kill all &&
+          echo 4 &&
           sudo bash -c "echo deb https://packagecloud.io/varnishcache/varnish64/ubuntu/ bionic main > /etc/apt/sources.list.d/varnish.list"
 
         sudo apt-get update
