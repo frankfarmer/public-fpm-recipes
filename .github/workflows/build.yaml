@@ -18,8 +18,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-vagrant-
 
-    - name: Run vagrant up
-      run: wget --quiet https://releases.hashicorp.com/vagrant/2.2.18/vagrant_2.2.18_x86_64.deb && sudo dpkg -i vagrant_2.2.18_x86_64.deb && vagrant up --provider=docker
+    - name: Install vagrant
+      run: wget --quiet https://releases.hashicorp.com/vagrant/2.2.18/vagrant_2.2.18_x86_64.deb && sudo dpkg -i vagrant_2.2.18_x86_64.deb
+    #- name: vagrant up
+    #  run: vagrant up --provider=docker
 
     - name: build
       run: make varnish-modules ; docker ps ; docker images
