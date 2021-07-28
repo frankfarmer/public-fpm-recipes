@@ -38,13 +38,9 @@ jobs:
         VARNISH_APT_KEY: A9897320C397E3A60C03E8BF821AD320F71BFF3D
       run:
         export GNUPGHOME="$(mktemp -d)" &&
-        echo 1 &&
           sudo gpg --batch --keyserver keyserver.ubuntu.com --recv-keys $VARNISH_APT_KEY &&
-          echo 2 &&
           sudo bash -c "gpg --batch --export export $VARNISH_APT_KEY > /etc/apt/trusted.gpg.d/varnish.gpg" &&
-          echo 3 &&
           gpgconf --kill all &&
-          echo 4 &&
           sudo bash -c "echo deb https://packagecloud.io/varnishcache/varnish64/ubuntu/ bionic main > /etc/apt/sources.list.d/varnish.list"
 
         sudo apt-get update
@@ -62,3 +58,9 @@ jobs:
 
     - name: build
       run: cd recipes/varnish-modules ; sudo fpm-cook install-deps ; fpm-cook package
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: vmod
+        path: recipes/varnish-modules/pkg
