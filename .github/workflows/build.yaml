@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   vagrant-up:
-    runs-on: macos-10.15
+    runs-on: ubuntu-18.04
 
     steps:
     #- uses: docker-practice/actions-setup-docker@master
@@ -19,7 +19,8 @@ jobs:
           ${{ runner.os }}-vagrant-
 
     - name: Run vagrant up
-      run: brew install --cask docker && brew reinstall vagrant && vagrant up --provider=docker
+      run: wget https://releases.hashicorp.com/vagrant/2.2.18/vagrant_2.2.18_x86_64.deb && dpkg -i vagrant_2.2.18_x86_64.deb && which docker && which vagrant
+      #vagrant up --provider=docker
 
     - name: build
       run: make varnish-modules
