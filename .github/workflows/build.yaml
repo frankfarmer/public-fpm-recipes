@@ -54,4 +54,4 @@ jobs:
 
 
     - name: build
-      run: fpm-cook package varnish-modules
+      run: cd recipes/varnish-modules ; fpm-cook package
