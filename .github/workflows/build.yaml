@@ -48,7 +48,7 @@ jobs:
         export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
         sudo mkdir -p "$GOPATH/src" "$GOPATH/bin" && sudo chmod -R 777 "$GOPATH"
 
-        gem install fpm-cookery --no-ri --no-rdoc
+        sudo gem install fpm-cookery --no-ri --no-rdoc
 
 
 
