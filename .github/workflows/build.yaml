@@ -57,10 +57,16 @@ jobs:
         sudo gem install fpm-cookery --no-ri --no-rdoc
 
     - name: build
-      run: cd recipes/varnish-modules ; sudo fpm-cook install-deps ; fpm-cook package
+      run: |
+        for d in recipes/* ; do
+          cd $d
+          sudo fpm-cook install-deps
+          fpm-cook package
+          cd ../..
+        done
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: vmod
+        name: all-debs
         path: recipes/**/pkg
