@@ -12,9 +12,6 @@ jobs:
     - name:
       env:
         RUBY_VERSION: 2.5
-        VARNISH_APT_KEY: A9897320C397E3A60C03E8BF821AD320F71BFF3D
-        GOLANG_VERSION: 1.14.2
-        GOLANG_SHA256: 6272d6e940ecb71ea5636ddb5fab3933e087c1356173c61f4a803895e947ebb3
       run: |
         sudo apt-get update && sudo apt-get install -y \
         g++ \
@@ -39,6 +36,8 @@ jobs:
 
 
     - name: varnish-apt-deps
+      env:
+        VARNISH_APT_KEY: A9897320C397E3A60C03E8BF821AD320F71BFF3D
       run:
         export GNUPGHOME="$(mktemp -d)" && \
           sudo gpg --batch --keyserver keyserver.ubuntu.com --recv-keys $VARNISH_APT_KEY && \
@@ -49,6 +48,9 @@ jobs:
         sudo apt-get update
 
     - name: golang-and-fpm
+      env:
+        GOLANG_VERSION: 1.14.2
+        GOLANG_SHA256: 6272d6e940ecb71ea5636ddb5fab3933e087c1356173c61f4a803895e947ebb3
       run:
         export GOPATH="/go"
         export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
