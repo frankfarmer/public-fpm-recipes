@@ -7,7 +7,7 @@ jobs:
     runs-on: macos-10.15
 
     steps:
-    - uses: docker-practice/actions-setup-docker@master
+    #- uses: docker-practice/actions-setup-docker@master
     - uses: actions/checkout@v2
 
     - name: Cache Vagrant boxes
@@ -19,7 +19,7 @@ jobs:
           ${{ runner.os }}-vagrant-
 
     - name: Run vagrant up
-      run: brew install vagrant && vagrant up --provider=docker
+      run: brew install --cask docker && brew reinstall vagrant && vagrant up --provider=docker
 
     - name: build
       run: make varnish-modules
