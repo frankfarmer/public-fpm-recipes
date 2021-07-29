@@ -1,9 +1,9 @@
-name: build-debs
+name: build-bionic-debs
 
 on: [push]
 
 jobs:
-  build-debs:
+  build:
     runs-on: ubuntu-18.04
 
     steps:
