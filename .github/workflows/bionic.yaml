@@ -23,9 +23,10 @@ jobs:
           cache-to: type=gha,mode=max
           tags: ghcr.io/${{ github.repository_owner }}/public-fpm-recipes:latest
   fpm:
-    name: run fpm
-    needs: docker
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pkg: [calicoctl, consul, consul-template, cri-tools, docker-compose, frr-exporter, libvmod-geoip2, libvmod-timers, libvmod-urlcode, nsq, oauth2-proxy, prometheus-varnish-exporter, terraform12, varnish-modules, vault]
     container:
       image: ghcr.io/${{ github.repository_owner }}/public-fpm-recipes:latest
       credentials:
@@ -33,14 +34,14 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
       volumes:
         - ${{ github.workspace }}/app:/app
-    strategy: matrix
-      pkg: [macos-latest, windows-latest, ubuntu-18.04]
+    name: run fpm
+    needs: docker
     steps:
       - name: checkout
         uses: actions/checkout@v2
         with:
           path: app
-      - run: ./app/docker/bionic/entrypoint.sh consul
+      - run: ./app/docker/bionic/entrypoint.sh ${{ matrix.pkg }}
         id: build
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
