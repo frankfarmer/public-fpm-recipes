@@ -24,9 +24,6 @@ jobs:
           tags: ghcr.io/${{ github.repository_owner }}/public-fpm-recipes:latest
   fpm:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        pkg: [calicoctl, consul, consul-template, cri-tools, docker-compose, frr-exporter, libvmod-geoip2, libvmod-timers, libvmod-urlcode, nsq, oauth2-proxy, prometheus-varnish-exporter, terraform12, varnish-modules, vault]
     container:
       image: ghcr.io/${{ github.repository_owner }}/public-fpm-recipes:latest
       credentials:
@@ -48,3 +45,6 @@ jobs:
         with:
           name: ${{ steps.build.outputs.path }}
           path: app/${{ steps.build.outputs.path }}
+    strategy:
+      matrix:
+        pkg: [calicoctl, consul, consul-template, cri-tools, docker-compose, frr-exporter, libvmod-geoip2, libvmod-timers, libvmod-urlcode, nsq, oauth2-proxy, prometheus-varnish-exporter, terraform12, varnish-modules, vault]
