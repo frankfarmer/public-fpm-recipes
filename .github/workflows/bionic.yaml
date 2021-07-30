@@ -40,3 +40,8 @@ jobs:
         with:
           path: app
       - run: ./app/docker/bionic/entrypoint.sh consul
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: all-debs
+          path: '*.deb'
