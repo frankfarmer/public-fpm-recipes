@@ -17,8 +17,12 @@ jobs:
           tags: latest
   build:
     needs: docker
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/frankfarmer/public-fpm-recipes:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.ghcr_token }}
       env:
         NODE_ENV: development
       volumes:
