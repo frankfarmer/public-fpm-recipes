@@ -15,6 +15,8 @@ jobs:
           username: "frankfarmer"
           password: ${{ secrets.GITHUB_TOKEN }}
           repository: frankfarmer/public-fpm-recipes
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           tags: latest
   fpm:
     name: run fpm
