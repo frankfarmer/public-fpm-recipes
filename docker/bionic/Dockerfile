@@ -54,6 +54,6 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
 RUN gem install fpm-cookery --no-ri --no-rdoc
 
-RUN mdkir /app
+RUN mkdir /app
 COPY entrypoint.sh /app/entrypoint.sh
 ENTRYPOINT ["/app/entrypoint.sh"]
