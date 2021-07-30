@@ -1,9 +1,9 @@
 #!/bin/bash
 
-cd recipes/$1
+cd /app/recipes/$1
 
 sudo fpm-cook install-deps
 fpm-cook package
-cd ../..
+cd /app
 
 mv recipes/*/pkg/*.deb .

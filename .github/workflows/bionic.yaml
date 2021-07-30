@@ -9,6 +9,7 @@ jobs:
       - name: 'dockerimage'
         uses: docker/build-push-action@v1
         with:
+          path: docker/bionic
           dockerfile: docker/bionic/Dockerfile
           registry: ghcr.io
           username: "frankfarmer"
@@ -24,10 +25,8 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-      env:
-        NODE_ENV: development
       volumes:
-        - my_docker_volume:/volume_mount
+        - /app:/app
 
     steps:
       - name: "checkout"
