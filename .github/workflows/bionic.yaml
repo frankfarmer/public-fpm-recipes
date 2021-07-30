@@ -21,13 +21,13 @@ jobs:
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          tags: latest
+          tags: ghcr.io/${{ github.repository_owner }}/public-fpm-recipes:latest
   fpm:
     name: run fpm
     needs: docker
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/frankfarmer/public-fpm-recipes:latest
+      image: ghcr.io/${{ github.repository_owner }}/public-fpm-recipes:latest
       credentials:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
