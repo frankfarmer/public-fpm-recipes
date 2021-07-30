@@ -39,4 +39,4 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: app
-      - run: ls * */* ; ${{ github.workspace }}/app/entrypoint.sh consul
+      - run: ./docker/bionic/entrypoint.sh consul
