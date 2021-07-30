@@ -23,6 +23,8 @@ jobs:
           cache-to: type=gha,mode=max
           tags: ghcr.io/${{ github.repository_owner }}/public-fpm-recipes:latest
   fpm:
+    name: run fpm
+    needs: docker
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/${{ github.repository_owner }}/public-fpm-recipes:latest
@@ -31,8 +33,6 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
       volumes:
         - ${{ github.workspace }}/app:/app
-    name: run fpm
-    needs: docker
     steps:
       - name: checkout
         uses: actions/checkout@v2

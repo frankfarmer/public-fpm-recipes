@@ -8,6 +8,7 @@ The build is located in [.github/workflows/bionic.yaml](./.github/workflows/bion
 ## Debugging
 
 For debugging, it's possible to run the action locally using [nektos/act](https://github.com/nektos/act)
+(the act project is new and actively developed as of 2020 and thus can be unstable in some edge cases)
 
 The included makefile includes shortcuts for getting a shell into a failed local build container:
 
