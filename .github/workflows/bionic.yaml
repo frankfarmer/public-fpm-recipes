@@ -25,5 +25,5 @@ jobs:
         - my_docker_volume:/volume_mount
 
     steps:
-        - name: "checkout"
-          runs: 'echo 1'
+      - name: "checkout"
+        uses: actions/checkout@v2
