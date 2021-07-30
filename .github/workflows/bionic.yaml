@@ -6,15 +6,17 @@ jobs:
     steps:
       - name: "checkout"
         uses: actions/checkout@v2
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: 'dockerimage'
         uses: docker/build-push-action@v2
         with:
-          path: docker/bionic
-          dockerfile: docker/bionic/Dockerfile
-          registry: ghcr.io
-          username: "frankfarmer"
-          password: ${{ secrets.GITHUB_TOKEN }}
-          repository: frankfarmer/public-fpm-recipes
+          context: docker/bionic
+          push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: latest
@@ -25,7 +27,7 @@ jobs:
     container:
       image: ghcr.io/frankfarmer/public-fpm-recipes:latest
       credentials:
-        username: ${{ github.actor }}
+        username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
       volumes:
         - ${{ github.workspace }}/app:/app
