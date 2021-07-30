@@ -8,4 +8,4 @@ cd /app
 
 rm *.deb
 mv recipes/*/pkg/*.deb .
-echo "::set-output name=output::$(ls *.deb)"
+echo "::set-output name=path::$(ls *.deb)"
