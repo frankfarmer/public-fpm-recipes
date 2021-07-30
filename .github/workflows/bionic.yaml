@@ -26,11 +26,11 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
       volumes:
-        - ${{ env.GITHUB_WORKSPACE }}/app:/app
+        - ${{ github.workspace }}/app:/app
 
     steps:
       - name: "checkout"
         uses: actions/checkout@v2
         with:
           path: app
-      - run: ${{ env.GITHUB_WORKSPACE }}/app/entrypoint.sh consul
+      - run: ${{ github.workspace }}/app/entrypoint.sh consul
