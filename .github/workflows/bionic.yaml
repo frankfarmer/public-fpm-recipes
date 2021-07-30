@@ -7,7 +7,7 @@ jobs:
       - name: "checkout"
         uses: actions/checkout@v2
       - name: 'dockerimage'
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v1
         with:
           file: docker/bionic/Dockerfile
           registry: ghcr.io
@@ -15,7 +15,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           repository: frankfarmer/public-fpm-recipes
           tags: latest
-  build:
+  fpm:
+    name: run fpm
     needs: docker
     runs-on: ubuntu-latest
     container:
