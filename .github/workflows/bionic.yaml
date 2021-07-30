@@ -9,7 +9,7 @@ jobs:
       - name: 'dockerimage'
         uses: docker/build-push-action@v1
         with:
-          file: docker/bionic/Dockerfile
+          dockerfile: docker/bionic/Dockerfile
           registry: ghcr.io
           username: "frankfarmer"
           password: ${{ secrets.GITHUB_TOKEN }}
