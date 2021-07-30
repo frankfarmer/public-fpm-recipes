@@ -23,3 +23,7 @@ jobs:
         NODE_ENV: development
       volumes:
         - my_docker_volume:/volume_mount
+
+    steps:
+        - name: "checkout"
+          runs: 'echo 1'
